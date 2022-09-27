@@ -26,7 +26,7 @@
 const getWeather = async function() {
 
   // currently using Farenheit
-  const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&APPID=1c241f369222261b5980cb0c4f78ee8a`);
+  const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&lang=en&APPID=1c241f369222261b5980cb0c4f78ee8a`);
 
   const weather = await data.json();
 
