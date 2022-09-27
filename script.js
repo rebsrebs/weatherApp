@@ -1,44 +1,52 @@
 
-// My API Key
-// 1c241f369222261b5980cb0c4f78ee8a
+let city;
+let units;
+let lang;
+
+const key = '1c241f369222261b5980cb0c4f78ee8a';
 
 // How to make an API call
 // https://openweathermap.org/api/one-call-api#how
-
-
 
 // http://api.openweathermap.org/data/2.5/weather?q=London&APPID=1111111111
 
 
 
-// `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=1c241f369222261b5980cb0c4f78ee8a`
-
-// URL (required), options (optional)
-// fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=1c241f369222261b5980cb0c4f78ee8a`)
-//   .then(function(response) {
-//     // Successful response :)
-//     return response.json();
-//   })
-//   .catch(function(err) {
-//     console.log(err);
-//   });
 
 const getWeather = async function() {
 
-  // currently using Farenheit
-  const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&lang=en&APPID=1c241f369222261b5980cb0c4f78ee8a`);
+  try {
 
-  const weather = await data.json();
+    const city = location.value;
+    const units = units.value;
+    const lang = lang.value;
 
-  console.log(weather);
-  console.log(`Name: ${weather.name}`);
-  console.log(`Coordinates: Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}`);
-  console.log(`Temp: ${weather.main.temp}`);
-  console.log(`Feels like: ${weather.main.feels_like}`);
+    const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&lang=${lang}&APPID=${key}`);
+
+    // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&lang=en&APPID=1c241f369222261b5980cb0c4f78ee8a`);
+
+    const weather = await data.json();
+
+    console.log(weather);
+    console.log(`Name: ${weather.name}`);
+    console.log(`Coordinates: Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}`);
+    console.log(`Temp: ${weather.main.temp}`);
+    console.log(`Feels like: ${weather.main.feels_like}`);
+
+  } catch(err) {
+      console.log(err);
+  }
 
 }
 
 getWeather();
+
+
+
+
+
+
+
 
 
 // Write the functions that hit the API. You’re going to want functions that can take a location and return the weather data for that location. For now, just console.log() the information.
