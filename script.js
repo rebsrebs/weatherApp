@@ -1,27 +1,30 @@
+const submitBtn = document.getElementById('searchsubmitbutton');
 
-let city;
-let units;
-let lang;
+
 
 const key = '1c241f369222261b5980cb0c4f78ee8a';
 
 // How to make an API call
 // https://openweathermap.org/api/one-call-api#how
 
-// http://api.openweathermap.org/data/2.5/weather?q=London&APPID=1111111111
+const handleSubmitClick = function() {
+  const city = document.getElementById('locationsearch').value;
+const units = document.querySelector('input[name="units"]:checked').value;
+const lang = document.querySelector('input[name="language"]:checked').value;
+
+  getWeather(city, units, lang);
+}
+
+submitBtn.addEventListener('click', handleSubmitClick);
 
 
 
 
-const getWeather = async function() {
+const getWeather = async function(citya, unitsa, langa) {
 
   try {
 
-    const city = location.value;
-    const units = units.value;
-    const lang = lang.value;
-
-    const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&lang=${lang}&APPID=${key}`);
+    const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&APPID=${key}`);
 
     // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&lang=en&APPID=1c241f369222261b5980cb0c4f78ee8a`);
 
@@ -38,8 +41,6 @@ const getWeather = async function() {
   }
 
 }
-
-getWeather();
 
 
 

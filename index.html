@@ -10,8 +10,32 @@
   <!-- Form for searching location -->
   <form action="" id="locationform" class="locationform" novalidate>
 
+    <fieldset>
+      <legend>Units</legend>
+      <p>
+      <label for="html">Farenheit</label>
+      <input type="radio" id="imperial" name="units" value="imperial">
+      </p>
+      <p>
+      <label for="css">Celsius</label>
+      <input type="radio" id="metric" name="units" value="metric">
+    </p>
+   </fieldset>
+
+   <fieldset>
+      <legend>Language</legend>
+      <p>
+      <label for="html">English</label>
+      <input type="radio" id="english" name="language" value="en">
+      </p>
+      <p>
+      <label for="css">Arabic</label>
+      <input type="radio" id="arabic" name="language" value="ar">
+    </p>
+    </fieldset>
+
     <!-- label for search bar -->
-    <label id="locationlabel" for="locationsearch" class="locationformitem">
+    <label id="locationlabel" for="locationsearch" class="formlabel">
       Find the weather somewhere:
     </label>
 
@@ -21,7 +45,8 @@
       <input type="text"  id="locationsearch" placeholder="Enter a location." required />
 
       <!-- search bar submit button -->
-      <button type="button" id="searchsubmit">
+      <button type="button" id="searchsubmitbutton">
+        SEARCH
       <!-- <img src="./images/search_blue.svg" alt="Submit Search" id="searchsubmiticon" > -->
       </button>
     </div>
