@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Form for searching location -->
+  <form action="" id="locationform" class="locationform" novalidate>
+
+    <!-- label for search bar -->
+    <label id="locationlabel" for="locationsearch" class="locationformitem">
+      Find the weather somewhere:
+    </label>
+
+    <!-- search bar wrapper -->
+    <div id="searchbarwrapper" class="locationformitem">
+      <!-- location search bar input -->
+      <input type="text"  id="locationsearch" placeholder="Enter a location." required />
+
+      <!-- search bar submit button -->
+      <button type="button" id="searchsubmit">
+      <!-- <img src="./images/search_blue.svg" alt="Submit Search" id="searchsubmiticon" > -->
+      </button>
+    </div>
+
+    <!-- Error display area -->
+    <div class="flexwrapper">
+      <p id="searchbarerror" class="searchformitem"></p>
+    </div>
+
+  </form>
+  
+  <div id="resultscontainer">
+    <img id = "imgGIF" src="#">
+    <p class="attribution">Powered by GIPHY</p>
+    <p class="attribution">Powered by Weather App</p>
+  </div>
+
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
