@@ -1,7 +1,4 @@
 const submitBtn = document.getElementById('searchsubmitbutton');
-
-
-
 const key = '1c241f369222261b5980cb0c4f78ee8a';
 
 // How to make an API call
