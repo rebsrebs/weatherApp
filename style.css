@@ -1,6 +1,7 @@
 
 :root {
   --form-control-color: rgb(96, 11, 55);
+  --box-shadow-one: 0px 1px 10px 1px rgba(0, 0, 0, 0.4);
 }
 
 *,
@@ -20,14 +21,13 @@ body {
 
 #locationform {
   width: 400px;
-  background-color: pink;
+  background-color: rgb(221, 200, 204);
   padding: 30px 20px 20px 20px;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto auto auto auto;
   gap: 1em;
-  /* box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); */
-  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  /* box-shadow: var(--box-shadow-one); */
 }
 
 .spantwo {
@@ -42,8 +42,8 @@ h2 {
 }
 
 .formlabel {
-  color: blue;
-  font-family: system-ui, sans-serif;
+  color: rgb(10, 10, 17);
+  font-family:Arial, Helvetica, sans-serif;
   font-size: 2rem;
   font-weight: bold;
   line-height: 1.1;
@@ -102,9 +102,12 @@ input[type="radio"]:checked::before {
   /* margin-top: 0px; */
 }
 
-#unitsblock, #languageblock {
-  border: 1px solid black;
-  padding: 3px;
+#unitsblock, #languageblock, #locationblock {
+  /* border: 1px solid black; */
+  padding: 5px;
+  background-color: rgb(175, 245, 11);
+  box-shadow: var(--box-shadow-one);
+  border-radius: 10px;
 }
 
 #errorblock {
@@ -119,7 +122,18 @@ input[type="radio"]:checked::before {
 }
 
 #searchsubmitbutton {
+  max-width: 80%;
   font-size: 1.5em;
+  margin: auto;  
+  padding: 4px 16px 4px 16px;
+  border: none;
+  background-color:rgb(236, 246, 245);
+  border-radius: 20px;
+  box-shadow: var(--box-shadow-one);
+}
+
+label.form-control {
+  text-transform: uppercase;
 }
 
 
