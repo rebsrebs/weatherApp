@@ -3,6 +3,11 @@ const searchBarError = document.getElementById('searchbarerror');
 const key = '1c241f369222261b5980cb0c4f78ee8a';
 const locationInput = document.getElementById('locationsearch');
 
+const resultsLocationName = document.getElementById('resultslocationname');
+const resultsCoordinates = document.getElementById('resultscoordinates');
+const resultsTemp = document.getElementById('resultstemp');
+const resultsFeelsLike = document.getElementById('resultsfeelslike');
+
 // How to make an API call
 // https://openweathermap.org/api/one-call-api#how
 
@@ -42,6 +47,11 @@ const getWeather = async function(citya, unitsa, langa) {
     // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&lang=en&APPID=1c241f369222261b5980cb0c4f78ee8a`);
 
     const weather = await data.json();
+
+    resultsLocationName.textContent = `Location: ${weather.name}`;
+    // need to get units!
+    resultsTemp.textContent = `Current temperature: ${weather.main.temp}`;
+    resultsFeelsLike.textContent = `Feels like: ${weather.main.feels_like}`;
 
     console.log(weather);
     console.log(`Name: ${weather.name}`);
