@@ -32,16 +32,11 @@ h1 {
 
 #locationform {
   width: 100%;
-  /* background-color: rgb(221, 200, 204); */
   padding: 0px;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
+  flex-wrap: wrap;
   justify-content: flex-start;
-  /* grid-template-columns: auto auto;
-  grid-template-rows: auto auto auto auto auto; */
-  /* gap: 1em; */
-  /* box-shadow: var(--box-shadow-one); */
   border-bottom: 1px solid black;
 }
 
@@ -127,9 +122,9 @@ input[type="radio"]:checked::before {
   padding: 6px 25px 6px 5px;
 }
 
-#submitblock {
+/* #submitblock {
   width: 100%;
-}
+} */
 
 #errorblock {
   /* background-color: green; */
