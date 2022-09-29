@@ -47,11 +47,18 @@ const getWeather = async function(citya, unitsa, langa) {
     // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&lang=en&APPID=1c241f369222261b5980cb0c4f78ee8a`);
 
     const weather = await data.json();
+    let resultsUnits;
+
+    if (unitsa = 'imperial') {
+      resultsUnits = 'Farenheit';
+    } else if (unitsa = 'metric') {
+      resultsUnits = 'Celcius';
+    }
 
     resultsLocationName.textContent = `Location: ${weather.name}`;
     // need to get units!
-    resultsTemp.textContent = `Current temperature: ${weather.main.temp}`;
-    resultsFeelsLike.textContent = `Feels like: ${weather.main.feels_like}`;
+    resultsTemp.textContent = `Current temperature: ${weather.main.temp}\xB0 ${resultsUnits}`;
+    resultsFeelsLike.textContent = `Feels like: ${weather.main.feels_like}\xB0 ${resultsUnits}`;
 
     console.log(weather);
     console.log(`Name: ${weather.name}`);
