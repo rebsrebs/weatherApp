@@ -10,9 +10,9 @@ const resultsFeelsLike = document.getElementById('resultsfeelslike');
 
 const resultsContainer2 = document.getElementById('resultscontainer2');
 const resultsParagraph = document.getElementById('resultsparagraph');
-const weatherAttribution = document.getElementById('weatherattribution');
 const resultsImageContainer = document.getElementById('resultsimagecontainer');
 const resultsImage = document.getElementById('resultsimage');
+const resultsImageCaption = document.getElementById('resultsimagecaption');
 
 // How to make an API call
 // https://openweathermap.org/api/one-call-api#how
@@ -69,12 +69,12 @@ const getWeather = async function(citya, unitsa, langa) {
     resultsParagraph.innerHTML = `
     It's currently <span class='data'>${results.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${results.coord.lon}, Latitude ${results.coord.lat}</span> in <span class='data'>${results.name}</span>. It feels like <span class='data'>${results.main.feels_like}\xB0 ${resultsUnits}</span>.
     `
-    weatherAttribution.classList.remove('hidden');
 
     const description = results.weather[0].description;
 
     showGIF(description);
     resultsImage.classList.remove('hidden');
+    resultsImageCaption.textContent=`"${description}"`;
 
 
 
