@@ -11,6 +11,8 @@ const resultsFeelsLike = document.getElementById('resultsfeelslike');
 const resultsContainer2 = document.getElementById('resultscontainer2');
 const resultsParagraph = document.getElementById('resultsparagraph');
 const weatherAttribution = document.getElementById('weatherattribution');
+const resultsImageContainer = document.getElementById('resultsimagecontainer');
+const resultsImage = document.getElementById('resultsimage');
 
 // How to make an API call
 // https://openweathermap.org/api/one-call-api#how
@@ -50,7 +52,7 @@ const getWeather = async function(citya, unitsa, langa) {
 
     // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&lang=en&APPID=1c241f369222261b5980cb0c4f78ee8a`);
 
-    const weather = await data.json();
+    const results = await data.json();
     let resultsUnits;
 
     if (unitsa = 'imperial') {
@@ -65,16 +67,23 @@ const getWeather = async function(citya, unitsa, langa) {
     // resultsFeelsLike.textContent = `Feels like: ${weather.main.feels_like}\xB0 ${resultsUnits}`;
 
     resultsParagraph.innerHTML = `
-    It's currently <span class='data'>${weather.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}</span> in <span class='data'>${weather.name}</span>. It feels like <span class='data'>${weather.main.feels_like}\xB0 ${resultsUnits}</span>.
+    It's currently <span class='data'>${results.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${results.coord.lon}, Latitude ${results.coord.lat}</span> in <span class='data'>${results.name}</span>. It feels like <span class='data'>${results.main.feels_like}\xB0 ${resultsUnits}</span>.
     `
     weatherAttribution.classList.remove('hidden');
 
+    const description = results.weather[0].description;
 
-    console.log(weather);
-    console.log(`Name: ${weather.name}`);
-    console.log(`Coordinates: Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}`);
-    console.log(`Temp: ${weather.main.temp}`);
-    console.log(`Feels like: ${weather.main.feels_like}`);
+    showGIF(description);
+    resultsImage.classList.remove('hidden');
+
+
+
+    console.log(results);
+    console.log(`Name: ${results.name}`);
+    console.log(`Coordinates: Longitude ${results.coord.lon}, Latitude ${results.coord.lat}`);
+    console.log(`Temp: ${results.main.temp}`);
+    console.log(`Feels like: ${results.main.feels_like}`);
+    console.log(`Description: ${results.weather[0].description}`);
 
   } catch(err) {
       console.log(err);
@@ -82,15 +91,31 @@ const getWeather = async function(citya, unitsa, langa) {
 
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+
+const showGIF = function(keyword) {
+  // generate random index (0-8)
+  const index = getRandomInt(9);
+  // search GIPHY with keyword
+  async function getGIFs() {
+    try {
+      const response = await   fetch(`https://api.giphy.com/v1/gifs/search?api_key=dNW6NhV3umI5BEbDAYmtZDp44FPquBSg&q=${keyword}&limit=9&offset=0&rating=g&lang=en`, {mode: 'cors'});
+      const gifData = await response.json();
+      resultsImage.src = gifData.data[index].images.fixed_height.url;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  getGIFs();
+}
 
 
 
 
 
-
-
-
-// Write the functions that hit the API. You’re going to want functions that can take a location and return the weather data for that location. For now, just console.log() the information.
 
 // OpenWeatherMap API has several types of data that you can request. To get the current weather in a specific location, you can pass in the name of a city (optionally, you can also add a state code or a country code) as a URL query string parameter, like so:
 
