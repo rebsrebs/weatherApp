@@ -1,6 +1,6 @@
 
 :root {
-  --form-control-color: rgb(146, 5, 78);
+  --form-control-color: rgb(27, 52, 235);
   --box-shadow-one: 0px 1px 10px 1px rgba(0, 0, 0, 0.4);
 }
 
@@ -134,7 +134,7 @@ input[type="radio"]:checked::before {
 #errorblock {
   /* background-color: green; */
   font-size: 1.5em;
-  height: 25px;
+  height: 35px;
   border-bottom: 1px solid black;
   
 }
@@ -160,10 +160,10 @@ input[type="radio"]:checked::before {
   text-align: center;
   font-size: 1.5em;
   /* margin: auto;   */
-  padding: 4px 16px 4px 16px;
+  padding: 3px 16px 3px 16px;
   border: 1px solid gray;
   background-color:rgb(255, 255, 255);
-  border-radius: 20px;
+  border-radius: 18px;
   font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 500;
   display: inline-flex;
@@ -183,7 +183,7 @@ input[type="radio"]:checked::before {
 
 label.form-control {
   text-transform: uppercase;
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
 /* #locationblock {
@@ -201,6 +201,17 @@ label.form-control {
 #submitblock {
   background-color: azure;
 } */
+
+#searchbarerror {
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 3px 3px 3px 20px;
+  font-style: italic;
+}
+
+#searchbarerror.active {
+  background-color: hotpink;
+}
+
 
 
 

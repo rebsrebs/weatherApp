@@ -1,20 +1,36 @@
 const submitBtn = document.getElementById('searchsubmitbutton');
+const searchBarError = document.getElementById('searchbarerror');
 const key = '1c241f369222261b5980cb0c4f78ee8a';
+const locationInput = document.getElementById('locationsearch');
 
 // How to make an API call
 // https://openweathermap.org/api/one-call-api#how
 
 const handleSubmitClick = function() {
   const city = document.getElementById('locationsearch').value;
-const units = document.querySelector('input[name="units"]:checked').value;
-const lang = document.querySelector('input[name="language"]:checked').value;
-
-  getWeather(city, units, lang);
+  const units = document.querySelector('input[name="units"]:checked').value;
+  const lang = document.querySelector('input[name="language"]:checked').value;
+  if (city != '') {
+    getWeather(city, units, lang);
+  } else {
+    searchBarError.classList = 'active';
+    searchBarError.textContent = 'Location must not be blank.'
+  }
 }
+
+const handleLocationInput = function() {
+  const location = document.getElementById('locationsearch').value;
+  if (location != '') {
+    searchBarError.classList = 'inactive';
+    searchBarError.textContent = '';
+  }
+}
+
+
 
 submitBtn.addEventListener('click', handleSubmitClick);
 
-
+locationInput.addEventListener('input', handleLocationInput);
 
 
 const getWeather = async function(citya, unitsa, langa) {
