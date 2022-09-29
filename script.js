@@ -56,7 +56,7 @@ const getWeather = async function(citya, unitsa, langa) {
     }
 
     resultsLocationName.textContent = `Location: ${weather.name}`;
-    // need to get units!
+    resultsCoordinates.textContent = `Coordinates: Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}`;
     resultsTemp.textContent = `Current temperature: ${weather.main.temp}\xB0 ${resultsUnits}`;
     resultsFeelsLike.textContent = `Feels like: ${weather.main.feels_like}\xB0 ${resultsUnits}`;
 
