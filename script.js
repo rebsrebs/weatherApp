@@ -46,37 +46,35 @@ locationInput.addEventListener('input', handleLocationInput);
 
 const getWeather = async function(citya, unitsa, langa) {
 
+  console.log(`Running getWeather wtih city: ${citya}, units: ${unitsa}, language: ${langa}`);
+
   try {
 
     const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&APPID=${key}`);
 
-    // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&lang=en&APPID=1c241f369222261b5980cb0c4f78ee8a`);
-
     const results = await data.json();
     let resultsUnits;
 
-    if (unitsa = 'imperial') {
+    if (unitsa === 'imperial') {
       resultsUnits = 'Farenheit';
-    } else if (unitsa = 'metric') {
+    } else if (unitsa === 'metric') {
       resultsUnits = 'Celcius';
     }
 
-    // resultsLocationName.textContent = `Location: ${weather.name}`;
-    // resultsCoordinates.textContent = `Coordinates: Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}`;
-    // resultsTemp.textContent = `Current temperature: ${weather.main.temp}\xB0 ${resultsUnits}`;
-    // resultsFeelsLike.textContent = `Feels like: ${weather.main.feels_like}\xB0 ${resultsUnits}`;
 
-    resultsParagraph.innerHTML = `
-    It's currently <span class='data'>${results.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${results.coord.lon}, Latitude ${results.coord.lat}</span> in <span class='data'>${results.name}</span>. It feels like <span class='data'>${results.main.feels_like}\xB0 ${resultsUnits}</span>.
-    `
+    if (langa === 'en') {
+      resultsParagraph.innerHTML = 
+      `It's currently <span class='data'>${results.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${results.coord.lon}, Latitude ${results.coord.lat}</span> in <span class='data'>${results.name}</span>. It feels like <span class='data'>${results.main.feels_like}\xB0 ${resultsUnits}</span>.`
+    } else if (langa === 'fr') {
+      resultsParagraph.innerHTML = 
+      `Il fait actuellement <span class='data'>${results.main.temp}\xB0 ${resultsUnits}</span> à <span class='data'>Longitude ${results.coord.lon}, Latitude ${results.coord.lat}</span> à <span class='data'>${results.name}</span>. Il semble qu'il fait <span class='data'>${results.main.feels_like}\xB0 ${resultsUnits}</span>.`
+    }
 
     const description = results.weather[0].description;
 
     showGIF(description);
     resultsImage.classList.remove('hidden');
     resultsImageCaption.textContent=`"${description}"`;
-
-
 
     console.log(results);
     console.log(`Name: ${results.name}`);
