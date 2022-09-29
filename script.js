@@ -9,6 +9,8 @@ const resultsTemp = document.getElementById('resultstemp');
 const resultsFeelsLike = document.getElementById('resultsfeelslike');
 
 const resultsContainer2 = document.getElementById('resultscontainer2');
+const resultsParagraph = document.getElementById('resultsparagraph');
+const weatherAttribution = document.getElementById('weatherattribution');
 
 // How to make an API call
 // https://openweathermap.org/api/one-call-api#how
@@ -57,14 +59,15 @@ const getWeather = async function(citya, unitsa, langa) {
       resultsUnits = 'Celcius';
     }
 
-    resultsLocationName.textContent = `Location: ${weather.name}`;
-    resultsCoordinates.textContent = `Coordinates: Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}`;
-    resultsTemp.textContent = `Current temperature: ${weather.main.temp}\xB0 ${resultsUnits}`;
-    resultsFeelsLike.textContent = `Feels like: ${weather.main.feels_like}\xB0 ${resultsUnits}`;
+    // resultsLocationName.textContent = `Location: ${weather.name}`;
+    // resultsCoordinates.textContent = `Coordinates: Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}`;
+    // resultsTemp.textContent = `Current temperature: ${weather.main.temp}\xB0 ${resultsUnits}`;
+    // resultsFeelsLike.textContent = `Feels like: ${weather.main.feels_like}\xB0 ${resultsUnits}`;
 
-    resultsContainer2.innerHTML = `
+    resultsParagraph.innerHTML = `
     It's currently <span class='data'>${weather.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${weather.coord.lon}, Latitude ${weather.coord.lat}</span> in <span class='data'>${weather.name}</span>. It feels like <span class='data'>${weather.main.feels_like}\xB0 ${resultsUnits}</span>.
     `
+    weatherAttribution.classList.remove('hidden');
 
 
     console.log(weather);
