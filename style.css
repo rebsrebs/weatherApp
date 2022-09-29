@@ -1,6 +1,6 @@
 
 :root {
-  --form-control-color: rgb(96, 11, 55);
+  --form-control-color: rgb(146, 5, 78);
   --box-shadow-one: 0px 1px 10px 1px rgba(0, 0, 0, 0.4);
 }
 
@@ -21,7 +21,7 @@ body {
 
 #locationform {
   width: 400px;
-  background-color: rgb(221, 200, 204);
+  /* background-color: rgb(221, 200, 204); */
   padding: 30px 20px 20px 20px;
   display: grid;
   grid-template-columns: auto auto;
@@ -51,8 +51,8 @@ h2 {
 
 .form-control {
   font-family: system-ui, sans-serif;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight:400;
   line-height: 1.1;
   display: grid;
   grid-template-columns: 1em auto;
@@ -71,7 +71,7 @@ input[type="radio"] {
   color: currentColor;
   width: 1.15em;
   height: 1.15em;
-  border: 0.15em solid currentColor;
+  border: 0.125em solid currentColor;
   border-radius: 50%;
   margin: 0px;
   /* To align with top line of text if label breaks */
@@ -105,8 +105,8 @@ input[type="radio"]:checked::before {
 #unitsblock, #languageblock, #locationblock {
   /* border: 1px solid black; */
   padding: 5px;
-  background-color: rgb(175, 245, 11);
-  box-shadow: var(--box-shadow-one);
+  /* background-color: rgb(175, 245, 11); */
+  /* box-shadow: var(--box-shadow-one); */
   border-radius: 10px;
 }
 
@@ -119,17 +119,38 @@ input[type="radio"]:checked::before {
   width: 100%;
   font-size: 1.5rem;
   margin-top: 10px;
+  padding: 2px 5px 2px 5px;
+  font-family: system-ui, sans-serif;
+  font-size: 1.3rem;
+  font-weight:400;
+  line-height: 1.1;
 }
 
 #searchsubmitbutton {
+  text-transform: capitalize;
+  text-align: center;
   max-width: 80%;
   font-size: 1.5em;
   margin: auto;  
   padding: 4px 16px 4px 16px;
-  border: none;
-  background-color:rgb(236, 246, 245);
+  border: 1px solid gray;
+  background-color:rgb(255, 255, 255);
   border-radius: 20px;
-  box-shadow: var(--box-shadow-one);
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center; 
+  /* box-shadow: var(--box-shadow-one); */
+}
+
+#searchsubmitbutton:hover {
+  background-color: lightgray;
+}
+
+#searchsubmitbutton:active {
+  background-color: black;
+  color: white;
+  box-shadow: 0px 1px 10px 1px rgba(227, 247, 3, 0.4);
 }
 
 label.form-control {
