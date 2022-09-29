@@ -6,25 +6,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <h1 class="mainheader">Weather App</h1>
+
+  <!-- ERROR display area -->
+    <!-- row 2 -->
+    <div id=errorblock class="flexwrapper spantwo">
+      <p id="searchbarerror" class="searchformitem"></p>
+    </div>
   
   <!-- FORM for searching location -->
   <form action="" id="locationform" class="locationform" novalidate>
 
     <!-- FORM HEADING -->
-    <!-- row 1 -->
-    <h2 id="headingblock" class="spantwo">Weather Finder</h2>
 
-    <!-- ERROR display area -->
-    <!-- row 2 -->
-    <div id=errorblock class="flexwrapper spantwo">
-      <p id="searchbarerror" class="searchformitem"></p>
-    </div>
+    
 
     <!-- LOCATION SEARCH -->
     <!-- row 3 -->
-    <div id="locationblock" class="spantwo">
+    <div id="locationblock" class="formblock">
       <label id="locationlabel" for="locationsearch" class="formlabel">
-        Location
+        Location:
       </label>
       <div id="searchbarwrapper" class="locationformitem">
         <input type="text"  id="locationsearch" placeholder="Please enter a city." required />
@@ -33,8 +35,8 @@
 
     <!-- UNITS -->
     <!-- row 4 column 1 -->
-    <div id="unitsblock">
-    <p class="formlabel">Units</p>
+    <div id="unitsblock" class="formblock">
+    <p class="formlabel">Units:</p>
     <label for="imperial" class="form-control">
     <input type="radio" id="imperial" name="units" value="imperial">
     Farenheit</label>
@@ -45,8 +47,8 @@
 
     <!-- LANGUAGE -->
     <!-- row 4 column 2 -->
-    <div id="languageblock">
-    <p class="formlabel">Language</p>
+    <div id="languageblock" class="formblock">
+    <p class="formlabel">Language:</p>
     <label for="english" class="form-control">
     <input type="radio" id="english" name="language" value="en">
     English</label>
@@ -57,10 +59,12 @@
 
     <!-- SUBMIT BUTTON -->
     <!-- row 5 -->
+    <div id="submitblock" class="formblock">
     <button type="button" id="searchsubmitbutton" class="spantwo">
       submit
     <!-- <img src="./images/search_blue.svg" alt="Submit Search" id="searchsubmiticon" > -->
     </button>
+    </div>
 
   </form>
   <!-- END FORM -->

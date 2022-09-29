@@ -15,38 +15,55 @@
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: center;
 }
 
-#locationform {
-  width: 400px;
-  /* background-color: rgb(221, 200, 204); */
-  padding: 30px 20px 20px 20px;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto auto auto auto;
-  gap: 1em;
-  /* box-shadow: var(--box-shadow-one); */
+.mainheader {
+  width: 100%;
+  padding: 5px 5px 5px 10px;
+  /* border-bottom: 1px solid black; */
 }
 
-.spantwo {
-  grid-column: 1 / 3;
+h1 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 3rem;
 }
+
+#locationform {
+  width: 100%;
+  /* background-color: rgb(221, 200, 204); */
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+  /* grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto auto; */
+  /* gap: 1em; */
+  /* box-shadow: var(--box-shadow-one); */
+  border-bottom: 1px solid black;
+}
+
+/* .spantwo {
+  grid-column: 1 / 3;
+} */
 
 h2 {
   font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 2.5rem;
+  justify-content: space-between;
   /* letter-spacing: .3rem; */
   text-align: center;
 }
 
 .formlabel {
-  color: rgb(10, 10, 17);
+  color: rgb(37, 37, 37);
   font-family:Arial, Helvetica, sans-serif;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   line-height: 1.1;
+  margin-right: 10px;
 }
 
 .form-control {
@@ -57,7 +74,7 @@ h2 {
   display: grid;
   grid-template-columns: 1em auto;
   gap: 0.5em;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 input[type="radio"] {
@@ -98,27 +115,39 @@ input[type="radio"]:checked::before {
 
 /* adjacent sibling combinator */
 .form-control + .form-control {
-  margin-top: .5em;
-  /* margin-top: 0px; */
+  margin-left: .7em;
 }
 
-#unitsblock, #languageblock, #locationblock {
-  /* border: 1px solid black; */
-  padding: 5px;
-  /* background-color: rgb(175, 245, 11); */
-  /* box-shadow: var(--box-shadow-one); */
-  border-radius: 10px;
+.formblock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: start;
+  padding: 5px 25px 5px 5px;
+}
+
+#submitblock {
+  width: 100%;
 }
 
 #errorblock {
-  background-color: green;
+  /* background-color: green; */
   font-size: 1.5em;
+  height: 25px;
+  border-bottom: 1px solid black;
+  
+}
+
+#locationblock {
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
 }
 
 #locationsearch {
-  width: 100%;
+  /* width: 100%; */
   font-size: 1.5rem;
-  margin-top: 10px;
   padding: 2px 5px 2px 5px;
   font-family: system-ui, sans-serif;
   font-size: 1.3rem;
@@ -129,9 +158,8 @@ input[type="radio"]:checked::before {
 #searchsubmitbutton {
   text-transform: capitalize;
   text-align: center;
-  max-width: 80%;
   font-size: 1.5em;
-  margin: auto;  
+  /* margin: auto;   */
   padding: 4px 16px 4px 16px;
   border: 1px solid gray;
   background-color:rgb(255, 255, 255);
@@ -155,7 +183,24 @@ input[type="radio"]:checked::before {
 
 label.form-control {
   text-transform: uppercase;
+  margin-top: 6px;
 }
+
+/* #locationblock {
+  background-color: rgb(234, 186, 186);
+}
+
+#unitsblock {
+  background-color: rgb(230, 225, 191);
+}
+
+#languageblock {
+  background-color: rgb(219, 242, 216);
+}
+
+#submitblock {
+  background-color: azure;
+} */
 
 
 
