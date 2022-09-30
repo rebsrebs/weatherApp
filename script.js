@@ -50,7 +50,7 @@ const getWeather = async function(citya, unitsa, langa) {
 
   try {
 
-    const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&APPID=${key}`);
+    const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&APPID=${key}`);
 
     // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&exclude=hourly,daily&APPID=${key}`);
 
@@ -87,6 +87,7 @@ const getWeather = async function(citya, unitsa, langa) {
 
   } catch(err) {
       console.log(err);
+      // also check if location name is undefined like with "loon"
       searchBarError.classList = 'active';
       searchBarError.textContent = 'No such location found. Please check the spelling and try again.'
   }
