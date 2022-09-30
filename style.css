@@ -262,6 +262,11 @@ label.form-control {
   margin-top: 3px;
 }
 
+#loading {
+  font-size: 4rem;
+  color: blue;
+}
+
 
 
 

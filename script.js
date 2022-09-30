@@ -14,6 +14,8 @@ const resultsImageContainer = document.getElementById('resultsimagecontainer');
 const resultsImage = document.getElementById('resultsimage');
 const resultsImageCaption = document.getElementById('resultsimagecaption');
 
+const loading = document.getElementById('loading');
+
 // How to make an API call
 // https://openweathermap.org/api/one-call-api#how
 
@@ -55,23 +57,62 @@ const getWeather = async function(citya, unitsa, langa) {
 
   try {
 
+    // show loader
+    loading.classList.remove('hidden');
+
     const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&APPID=${key}`);
 
     // this doesn't work with my API key
     // const data = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${citya}`);
 
-    // show loader
-    // resultsParagraph.textContent = 'Loading';
+    
 
     // http://api.weatherapi.com/v1/forecast.json?key=1986480656ec490d950204923202611&q=${location}
 
     const results = await data.json();
-    // hide loader
+    
+    
 
     // use destructuring to make obect with only data I want
     console.log(results);
     const picked = (({ coord, main, name, weather, wind }) => ({ coord, main, name, weather, wind }))(results);
     console.log(picked);
+
+    // function processData(weatherData) {
+    //   // grab all the data i want to display on the page
+    //   const myData = {
+    //     condition: weatherData.current.condition.text,
+    //     feelsLike: {
+    //       f: Math.round(weatherData.current.feelslike_f),
+    //       c: Math.round(weatherData.current.feelslike_c),
+    //     },
+    //     currentTemp: {
+    //       f: Math.round(weatherData.current.temp_f),
+    //       c: Math.round(weatherData.current.temp_c),
+    //     },
+    //     wind: Math.round(weatherData.current.wind_mph),
+    //     humidity: weatherData.current.humidity,
+    //     location: weatherData.location.name.toUpperCase(),
+    //   };
+
+    //   function getDataObject(data) {
+    //     const { main, description, icon } = data.weather[0];
+    //     const { country } = data.sys;
+    //     const { name, main: weatherInfo } = data;
+  
+    //     return {
+    //       name,
+    //       country,
+    //       main,
+    //       description,
+    //       iconUrl: getIcon(icon),
+    //       weatherInfo
+    //     };
+    //   }
+
+
+
+
 
     let resultsUnits;
 
@@ -81,6 +122,12 @@ const getWeather = async function(citya, unitsa, langa) {
       resultsUnits = 'Celcius';
     }
 
+    const description = picked.weather[0].description;
+
+    showGIF(description);
+
+    loading.classList.add('hidden');
+
     if (langa === 'en') {
       resultsParagraph.innerHTML = 
       `It's currently <span class='data'>${picked.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${picked.coord.lon}, Latitude ${picked.coord.lat}</span> in <span class='data'>${picked.name}</span>. It feels like <span class='data'>${picked.main.feels_like}\xB0 ${resultsUnits}</span>.`
@@ -89,9 +136,7 @@ const getWeather = async function(citya, unitsa, langa) {
       `Il fait actuellement <span class='data'>${picked.main.temp}\xB0 ${resultsUnits}</span> à <span class='data'>Longitude ${picked.coord.lon}, Latitude ${picked.coord.lat}</span> à <span class='data'>${picked.name}</span>. Il semble qu'il fait <span class='data'>${picked.main.feels_like}\xB0 ${resultsUnits}</span>.`
     }
 
-    const description = picked.weather[0].description;
-
-    showGIF(description);
+    
     
     console.log(`Name: ${picked.name}`);
     console.log(`Coordinates: Longitude ${picked.coord.lon}, Latitude ${picked.coord.lat}`);
@@ -104,6 +149,7 @@ const getWeather = async function(citya, unitsa, langa) {
       // also check if location name is undefined like with "loon"
       searchBarError.classList = 'active';
       searchBarError.textContent = 'No such location found. Please check the spelling and try again.'
+      loading.classList.add('hidden');
   }
 
 }
