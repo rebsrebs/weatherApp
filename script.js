@@ -56,7 +56,8 @@ const getWeather = async function(citya, unitsa, langa) {
 
     const results = await data.json();
     // use destructuring to make obect with only data I want
-    const picked = (({ coord, main, weather, wind }) => ({ coord, main, weather, wind }))(results);
+    console.log(results);
+    const picked = (({ coord, main, name, weather, wind }) => ({ coord, main, name, weather, wind }))(results);
     console.log(picked);
 
     let resultsUnits;
