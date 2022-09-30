@@ -52,7 +52,13 @@ const getWeather = async function(citya, unitsa, langa) {
 
     const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&APPID=${key}`);
 
+    // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&exclude=hourly,daily&APPID=${key}`);
+
     const results = await data.json();
+    // use destructuring to make obect with only data I want
+    const picked = (({ coord, main, weather, wind }) => ({ coord, main, weather, wind }))(results);
+    console.log(picked);
+
     let resultsUnits;
 
     if (unitsa === 'imperial') {
@@ -61,30 +67,28 @@ const getWeather = async function(citya, unitsa, langa) {
       resultsUnits = 'Celcius';
     }
 
-
     if (langa === 'en') {
       resultsParagraph.innerHTML = 
-      `It's currently <span class='data'>${results.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${results.coord.lon}, Latitude ${results.coord.lat}</span> in <span class='data'>${results.name}</span>. It feels like <span class='data'>${results.main.feels_like}\xB0 ${resultsUnits}</span>.`
+      `It's currently <span class='data'>${picked.main.temp}\xB0 ${resultsUnits}</span> at <span class='data'>Longitude ${picked.coord.lon}, Latitude ${picked.coord.lat}</span> in <span class='data'>${picked.name}</span>. It feels like <span class='data'>${picked.main.feels_like}\xB0 ${resultsUnits}</span>.`
     } else if (langa === 'fr') {
       resultsParagraph.innerHTML = 
-      `Il fait actuellement <span class='data'>${results.main.temp}\xB0 ${resultsUnits}</span> à <span class='data'>Longitude ${results.coord.lon}, Latitude ${results.coord.lat}</span> à <span class='data'>${results.name}</span>. Il semble qu'il fait <span class='data'>${results.main.feels_like}\xB0 ${resultsUnits}</span>.`
+      `Il fait actuellement <span class='data'>${picked.main.temp}\xB0 ${resultsUnits}</span> à <span class='data'>Longitude ${picked.coord.lon}, Latitude ${picked.coord.lat}</span> à <span class='data'>${picked.name}</span>. Il semble qu'il fait <span class='data'>${picked.main.feels_like}\xB0 ${resultsUnits}</span>.`
     }
 
-    const description = results.weather[0].description;
+    const description = picked.weather[0].description;
 
     showGIF(description);
-    resultsImage.classList.remove('hidden');
-    resultsImageCaption.textContent=`"${description}"`;
-
-    console.log(results);
-    console.log(`Name: ${results.name}`);
-    console.log(`Coordinates: Longitude ${results.coord.lon}, Latitude ${results.coord.lat}`);
-    console.log(`Temp: ${results.main.temp}`);
-    console.log(`Feels like: ${results.main.feels_like}`);
-    console.log(`Description: ${results.weather[0].description}`);
+    
+    console.log(`Name: ${picked.name}`);
+    console.log(`Coordinates: Longitude ${picked.coord.lon}, Latitude ${picked.coord.lat}`);
+    console.log(`Temp: ${picked.main.temp}`);
+    console.log(`Feels like: ${picked.main.feels_like}`);
+    console.log(`Description: ${picked.weather[0].description}`);
 
   } catch(err) {
       console.log(err);
+      searchBarError.classList = 'active';
+      searchBarError.textContent = 'No such location found. Please check the spelling and try again.'
   }
 
 }
@@ -103,6 +107,8 @@ const showGIF = function(keyword) {
       const response = await   fetch(`https://api.giphy.com/v1/gifs/search?api_key=dNW6NhV3umI5BEbDAYmtZDp44FPquBSg&q=${keyword}&limit=9&offset=0&rating=g&lang=en`, {mode: 'cors'});
       const gifData = await response.json();
       resultsImage.src = gifData.data[index].images.fixed_height.url;
+      resultsImage.classList.remove('hidden');
+      resultsImageCaption.textContent=`"${keyword}"`;
     } catch (err) {
       console.log(err);
     }
