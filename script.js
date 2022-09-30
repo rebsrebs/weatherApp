@@ -49,7 +49,6 @@ locationInput.addEventListener('keypress',function(e){
 
 locationInput.addEventListener('input', handleLocationInput);
 
-
 const getWeather = async function(citya, unitsa, langa) {
 
   console.log(`Running getWeather wtih city: ${citya}, units: ${unitsa}, language: ${langa}`);
@@ -58,9 +57,17 @@ const getWeather = async function(citya, unitsa, langa) {
 
     const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&APPID=${key}`);
 
-    // const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${citya}&units=${unitsa}&lang=${langa}&exclude=hourly,daily&APPID=${key}`);
+    // this doesn't work with my API key
+    // const data = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${citya}`);
+
+    // show loader
+    // resultsParagraph.textContent = 'Loading';
+
+    // http://api.weatherapi.com/v1/forecast.json?key=1986480656ec490d950204923202611&q=${location}
 
     const results = await data.json();
+    // hide loader
+
     // use destructuring to make obect with only data I want
     console.log(results);
     const picked = (({ coord, main, name, weather, wind }) => ({ coord, main, name, weather, wind }))(results);
